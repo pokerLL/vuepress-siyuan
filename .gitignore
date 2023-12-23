@@ -1,0 +1,13 @@
+.idea
+.vscode
+
+.env
+
+docs/*
+!docs/.vuepress
+!docs/README.md
+docs/.vuepress/dist
+
+node_modules
+
+*.zip
