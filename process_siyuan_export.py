@@ -278,6 +278,41 @@ def process_docs():
         clean_dir(dir)
         gen_config(dir)
 
+def clean_config():
+    full_path = f"{BASE_DIR}/docs/{dir}"
+    if not os.path.exists(full_path) or dir in BLACK_DIR_PATTERN:
+        return
+    config_file = f"{BASE_DIR}/docs/.vuepress/config.js"
+    with open(config_file) as f:
+        text = f.read()
+        text = text.replace("module.exports =","")
+    
+    config = demjson.decode(text)
+    config['themeConfig']['nav'] = []
+    config['themeConfig']['sidebar'] = {}
+
+    if SITE_TITLE is not None:
+        config["title"] = SITE_TITLE
+    
+    if SITE_DESC is not None:
+        config["description"] = SITE_DESC
+
+    op = "./test_aksdjklamzxncaksldasgd.js"
+    demjson.encode_to_file('./test_aksdjklamzxncaksldasgd.js', config, compactly=False, overwrite=True)
+
+    raw_text = Path(op).read_text()
+    to_replace = (
+        ('"[', '['),
+        (']"', ']'),
+    )
+    for a,b in to_replace:
+        raw_text = raw_text.replace(a,b)
+
+    with open(config_file, 'w+') as f:
+        f.write(f"module.exports = {raw_text}")
+    
+    os.remove(op)
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Process Siyuan export and perform various operations.")
@@ -295,5 +330,8 @@ if __name__ == "__main__":
     elif args.command == "gen-all":
         # example: python process_siyuan_export.py gen-all
         process_docs()
+    elif args.command == "clean-config":
+        # example: python process_siyuan_export.py clean-config
+        clean_config()
     else:
         print("Invalid command. Please use 'load'.")
