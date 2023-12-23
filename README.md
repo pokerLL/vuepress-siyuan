@@ -149,7 +149,7 @@ docs/测试笔记/
    # 如果没有make命令可尝试安装 或 直接执行yarn命令
    # yarn dev
    ```
-6. 打开浏览器访问 http://localhost:8080/，即可看到思源笔记中的内容已经在 VuePress 中展示出来了。
+6. 打开浏览器访问 http://localhost:8080/ ，即可看到思源笔记中的内容已经在 VuePress 中展示出来了。
 
    ![image](assets/image-20231224015827-nr20bvv.png)
 
