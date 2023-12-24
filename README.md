@@ -117,17 +117,15 @@ docs/测试笔记/
    ```sh
    git clone xxx
    cd xxx
-   yarn install
-   # 如果没有yarn命令可尝试安装
+   make init
+   # 如果没有make或yarn命令可尝试安装
    # npm install -g yarn
+   # 建议为yarn配置国内镜像源
+   # yarn config set registry https://registry.npm.taobao.org/ -g
    ```
 
-1. 将项目根目录下的 .env.tpl 文件复制一份并命名为 .env，根据约定修改其中内容：
+1. 根据约定修改项目下的`.env`文件：
 
-   ```python
-   cp .env.tpl .env
-   # 如果没有cp命令建议手动执行
-   ```
 2. 从思源笔记选择一篇笔记，点击更多 -> 导出 -> Markdown：
 
    ![image](assets/net-img-image-20231223225013-rxopw4v-20231224015432-ycw599w.png)

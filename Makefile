@@ -1,5 +1,9 @@
 # dev build load push
 
+init:
+	yarn install
+	cp .env.tpl .env
+
 dev:
 	yarn dev
  
