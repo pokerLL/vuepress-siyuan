@@ -16,10 +16,9 @@ except:
     print(f"{package_name} 未安装")
     import pkg_resources
     version = pkg_resources.get_distribution("setuptools").version
-    version = "68.2.2"
     pip.main(['install', 'setuptools==57.5.0'])
     pip.main(['install', package_name])
-
+    pip.main(['install', f'setuptools=={version}'])
     print(f"{package_name} 安装完成")
 finally:
     try:
@@ -27,8 +26,6 @@ finally:
     except:
         print(f"{package_name} 安装失败, 请手动安装")
         exit(2)
-    # setuptools安装回原来的版本
-    pip.main(['install', f'setuptools=={version}'])
 
 
 BASE_DIR = Path(os.path.abspath(__file__)).parent # 项目根目录 
