@@ -30,10 +30,10 @@ finally:
 
 BASE_DIR = Path(os.path.abspath(__file__)).parent # 项目根目录 
 
-IFRAME_RE = re.compile('<iframe src="/wid.*?></iframe>')
+IFRAME_RE = re.compile('<iframe src="/?widgets.*?></iframe>')
 IMAGE_RE = re.compile(r'!\[(.+?)\]\((assets\/.+?)\)')
 BLACK_DIR_PATTERN = ("assets", '.vuepress')
-BLACK_FILE_PATTERN = ("README.md", "sidebar.js", "config.js")
+BLACK_FILE_PATTERN = ("sidebar.js", "config.js")
 
 CONFIG_DICT = {}
 
@@ -72,7 +72,7 @@ def clean_file(fp):
 
     with open(fp, "w+") as f:
         f.write(raw_text)
-
+    
 
 def clean_dir(dir_path):
     if not os.path.exists(dir_path) or not os.path.isdir(dir_path):
@@ -183,7 +183,8 @@ def gen_config(dir):
     
     if SITE_DESC is not None:
         config["description"] = SITE_DESC
-
+    
+    clean_dir(f"{BASE_DIR}/docs/{dir}")
     _gen_config_nav(config, dir)
     _gen_config_sidebar(config, dir)
 
@@ -314,6 +315,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Process Siyuan export and perform various operations.")
     parser.add_argument("command", help="Specify the command to execute (e.g., load).")
     parser.add_argument("-f", "--file", help="File path for Siyuan export zip file.")
+    parser.add_argument("-d", "--dir", help="Directory path under docs folder.")
 
     args = parser.parse_args()
 
@@ -322,7 +324,14 @@ if __name__ == "__main__":
         if args.file:
             process_siyuan_export_zip(args.file)
         else:
-            print("Please provide the file path for Siyuan export using -f or --file option.")
+            print("Please provide the file path for Siyuan export using -f or --file option."
+                  "e.g., python process_siyuan_export.py load -f 测试笔记.md.zip")
+    elif args.command == "gen":
+        if args.dir:
+            gen_config(args.dir)
+        else:
+            print("Please provide the directory path under docs folder using -d or --dir option."
+                  "e.g., python process_siyuan_export.py gen -d 测试笔记")
     elif args.command == "gen-all":
         # example: python process_siyuan_export.py gen-all
         process_docs()
@@ -330,4 +339,5 @@ if __name__ == "__main__":
         # example: python process_siyuan_export.py clean-config
         clean_config()
     else:
-        print("Invalid command. Please use 'load'.")
+        print(f"Unknown command: {args.command}")
+        exit(1)
