@@ -3,6 +3,7 @@
 init:
 	yarn install
 	cp .env.tpl .env
+	cp ./docs/.vuepress/config.js.tpl ./docs/.vuepress/config.js
 
 dev:
 	yarn dev

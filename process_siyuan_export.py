@@ -33,7 +33,7 @@ BASE_DIR = Path(os.path.abspath(__file__)).parent # 项目根目录
 IFRAME_RE = re.compile('<iframe src="/?widgets.*?></iframe>')
 IMAGE_RE = re.compile(r'!\[(.+?)\]\((assets\/.+?)\)')
 BLACK_DIR_PATTERN = ("assets", '.vuepress')
-BLACK_FILE_PATTERN = ("sidebar.js", "config.js")
+BLACK_FILE_PATTERN = ("README.md", "sidebar.js", "config.js")
 
 CONFIG_DICT = {}
 
@@ -81,7 +81,7 @@ def clean_dir(dir_path):
     root, dirs, files = next(os.walk(dir_path))
     
     for file in files:
-        if file in BLACK_FILE_PATTERN:
+        if file in BLACK_FILE_PATTERN and file != "README.md":
             continue
         full_path = os.path.join(root, file)
         clean_file(full_path)
