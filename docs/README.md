@@ -1,18 +1,18 @@
 ---
 home: true
 heroImage: /images/logo.png
-heroText: Hero 标题
-tagline: Hero 副标题
-actionText: 快速上手 →
-actionLink: /zh/guide/
-features:
-- title: 简洁至上
-  details: 以 Markdown 为中心的项目结构，以最少的配置帮助你专注于写作。
-- title: Vue驱动
-  details: 享受 Vue + webpack 的开发体验，在 Markdown 中使用 Vue 组件，同时可以使用 Vue 来开发自定义主题。
-- title: 高性能
-  details: VuePress 为每个页面预渲染生成静态的 HTML，同时在页面被加载的时候，将作为 SPA 运行。
+heroText: 个人博客
+tagline: 分享、思考、记录生活点滴
+# actionText: 快速开始 →
+# actionLink: /
+# features:
+# - title: 人生箴言
+#   details: "成功是一连串失败的故事。—— 贾斯汀·毕伦"
+# - title: 智慧启迪
+#   details: "学习不是填满桶，而是点燃火焰。—— 威廉·巴克莱"
+# - title: 意义追寻
+#   details: "生活不止眼前的苟且，还有诗和远方。—— 屈原"
 ---
 ::: slot footer
-修改了底部
+<!-- 底部 -->
 :::
